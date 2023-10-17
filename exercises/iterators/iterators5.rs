@@ -10,8 +10,17 @@
 //
 // Execute `rustlings hint iterators5` or use the `hint` watch subcommand for a
 // hint.
+/*让我们定义一个简单的模型来跟踪沙沙声的锻炼进度。进展
+将使用哈希映射进行建模。练习的名称是关键和
+进步就是价值。创建了两个计数函数来计数
+具有给定进度的练习次数。重新创建此计数
+使用迭代器的功能。尽量不要使用命令式循环（for，while）。
+只有两个迭代器方法（count_iterator和count_collection_iterator）
+需要修改。
+//
+执行 'Rustlings hint iterator5' 或使用 'hint' watch 子命令
+提示。 */
 
-// I AM NOT DONE
 
 use std::collections::HashMap;
 
@@ -35,7 +44,11 @@ fn count_for(map: &HashMap<String, Progress>, value: Progress) -> usize {
 fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
     // map is a hashmap with String keys and Progress values.
     // map = { "variables1": Complete, "from_str": None, ... }
-    todo!();
+    // iter()获取map的迭代器
+    // filter()HashMap中第一个元素value相等的值
+    // count()用来返回数量
+    map.values().filter(|&&val| val == value).count()
+    
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
@@ -54,7 +67,12 @@ fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Pr
     // collection is a slice of hashmaps.
     // collection = [{ "variables1": Complete, "from_str": None, ... },
     //     { "variables2": Complete, ... }, ... ]
-    todo!();
+    collection
+    .iter()
+    .flat_map(|map| map.values())
+    .filter(|&&val| val == value)
+    .count()
+
 }
 
 #[cfg(test)]
